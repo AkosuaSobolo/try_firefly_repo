@@ -14,7 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-# grc_backend/urls.py
+
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
@@ -28,12 +28,12 @@ from django.conf.urls.static import static
 # Create a router and register our viewsets with it.
 router = DefaultRouter()
 router.register(r'teams', TeamViewSet)
-router.register(r'users', UserViewSet) # Registering the new User API endpoint
+router.register(r'users', UserViewSet) 
 
 def redirect_to_admin(request):
-    # This redirects the root URL (/) to the Admin path (/admin/)
     return redirect('/admin/')
-# The API URLs are now determined automatically by the router.
+
+# The API URLs are determined automatically by the router.
 urlpatterns = [
     path('', redirect_to_admin),
     path('admin/', admin.site.urls),

@@ -27,20 +27,15 @@ class UserManager(BaseUserManager):
         return self.create_user(username, email, password, **extra)
 
 class User(AbstractBaseUser, PermissionsMixin):
-    # New primary identifier field
+    # primary identifier field
     username = models.CharField(max_length=150, unique=True)
     
-    # Secondary identifier, now required
+    # Secondary identifier
     email = models.EmailField(unique=True)
     
     name = models.CharField(max_length=150, blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-
     objects = UserManager()
-    
-    # CRITICAL: Change to username
     USERNAME_FIELD = "username"
-    
-    # CRITICAL: email is now a required field during user creation
     REQUIRED_FIELDS = ["email"]

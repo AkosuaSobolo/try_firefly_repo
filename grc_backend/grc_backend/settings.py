@@ -13,23 +13,20 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-3_y=*-_$0*9gpm9(^(r5m*ayf8*oeaxg20qz_+ul6@k%+0ruit'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
 
-# Application definition
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -47,17 +44,17 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication', # Python treats this as a string, not a tuple
+        'rest_framework_simplejwt.authentication.JWTAuthentication', 
         'rest_framework.authentication.SessionAuthentication',
         ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated'                   # Python treats this as a string, not a tuple
+        'rest_framework.permissions.IsAuthenticated'                   
     ,),
 }
 
 AUTH_USER_MODEL = 'users.User'
 
-# JWT lifetime (adjust as needed)
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),    
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
@@ -96,8 +93,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'grc_backend.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+
 
 DATABASES = {
     'default': {
@@ -107,8 +103,7 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -126,8 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
+
 
 LANGUAGE_CODE = 'en-us'
 
@@ -138,41 +132,30 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# settings.py
 
-# ... other settings ...
-
-# Set this to output all emails, including the Djoser activation link,
-# directly to the console where your server is running.
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# grc_backend/settings.py
 
-# ... other settings ...
 
 DJOSER = {
-    # CRITICAL FIX: Add the TOKEN_GENERATOR setting
+    
     'TOKEN_GENERATOR': 'djoser.utils.DefaultTokenGenerator', 
     
-    # You likely also need these other settings for activation to work:
+    
     'ACTIVATION_URL': 'activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
     
-    # The serializer you are using for user creation
-    # Replace 'users.serializers.UserCreateSerializer' with your actual serializer path
+    
     'SERIALIZERS': {
         'user_create': 'users.serializers.UserCreateSerializer',
     }

@@ -1,21 +1,15 @@
-# This Python script tests the API's token retrieval and access to a protected endpoint.
-
 import requests
 import json
 import sys
 
-# ----------------------------------------------------------------------
-# STEP 1: CONFIGURE YOUR LOGIN CREDENTIALS HERE
-# ----------------------------------------------------------------------
-EMAIL = "akosua@gmail.com"   # <-- CHANGE THIS
-PASSWORD = "worde1234"  # <-- CHANGE THIS
-# ----------------------------------------------------------------------
+# LOGIN CREDENTIALS CONFIGURATION
+EMAIL = "email"  
+PASSWORD = "password"  
 
 API_TOKEN_URL = "http://127.0.0.1:8000/api/auth/token/"
 API_TEAMS_URL = "http://127.0.0.1:8000/api/v1/teams/"
 
 def get_auth_token():
-    """Attempts to log in to the API to retrieve the access token."""
     print("--- 1. Attempting to retrieve token ---")
     
     login_data = {
@@ -53,7 +47,6 @@ def get_auth_token():
         return None
 
 def test_teams_endpoint(token):
-    """Uses the retrieved token to access a protected API endpoint."""
     print("\n--- 2. Testing Teams endpoint with token ---")
     
     headers = {
