@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
 from rest_framework.routers import DefaultRouter
-from core.views import TeamViewSet
+from core.views import TeamViewSet, ArticleViewSet
 from users.views import UserViewSet
 from django.conf import settings
 from django.conf.urls.static import static
@@ -29,6 +29,7 @@ from django.conf.urls.static import static
 router = DefaultRouter()
 router.register(r'teams', TeamViewSet)
 router.register(r'users', UserViewSet) 
+router.register(r'articles', ArticleViewSet, basename='article')
 
 def redirect_to_admin(request):
     return redirect('/admin/')
